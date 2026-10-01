@@ -12,14 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build with Buildozer Action
-      uses: ArtemSydoryk/buildozer-action@v1.2.0
+    - name: Build with Buildozer
+      uses: ArtemSBulgakov/buildozer-action@v1
+      id: buildozer
       with:
-        command: buildozer -v android debug
-        repository_root: .
+        command: buildozer android debug
+        buildozer_version: stable
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: IronmanApp-APK
-        path: bin/*.apk
+        path: ./*.apk
